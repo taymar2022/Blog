@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/blog-home.css" rel="stylesheet" />
+
+    <link href="~/Content/designr-theme-grass.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+</head>
+<body> 
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink( "Karen McKinney", "Home", "Index", new { area = "" }, new { @class = "navbar-brand" })
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                @*<li>@Html.ActionLink("New", "Abc", "Home")</li>
+                <li>@Html.ActionLink("New", "Cup", "Home")</li>*@
+                <li>@Html.ActionLink("Blog", "Index", "BlogPosts")</li>
+
+            </ul>
+            @Html.Partial("_LoginPartial")
+            
+        </div>
+    </div>
+    @*<table style="width:100%;"><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></table>*@
+</div>
+    <!-- ==============================================
+    MAIN NAV
+    =============================================== -->
+    @*<div id="main-nav" class="navbar navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-nav">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+
+                <!-- ======= LOGO ========
+                <a class="navbar-brand scrollto" href="#home">KAREN MCKINNEY<br><span>UI Designer</span></a>
+                <!-- <a class="navbar-brand scrollto ir-logo" href="#">KAREN MCKINNEY<br><span>UI Designer</span></a> -->
+
+            </div>
+
+            <div id="site-nav" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="sr-only">
+                        <a href="#home" class="scrollto">Home</a>
+                    </li>
+                    <li>
+                        <a href="#services" class="scrollto">What I do</a>
+                    </li>
+                    <li>
+                        <a href="#about" class="scrollto">About Me</a>
+                    </li>
+                    <li>
+                        <a href="#portfolio" class="scrollto">My Works</a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="scrollto">Contact Me</a>
+                    </li>
+                    <li>
+                        <a href="Resume.htm">Resume</a>
+                    </li>
+
+                </ul>
+
+            </div><!--End navbar-collapse -->
+
+        </div><!--End container -->
+
+    </div>*@<!--End main-nav -->
+    
+    <div class="container body-content">
+        @RenderBody()
+        
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Karen McKinney</p>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/designr.js"></script>
+        @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,135 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Blog.Models.BlogPost>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!-- Page Content -->
+<div class="container">
+    @if (User.IsInRole("Admin"))
+    {
+        <h3>@Html.ActionLink("Create", "Create")</h3>
+    }
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="page-header">
+                My Blog
+                <small></small>
+            </h1>
+            @foreach (var item in Model)
+            {
+            <!-- First Blog Post -->
+                <h2>
+                    <a href="#">@Html.DisplayFor(modelItem => item.Title)</a>
+                </h2>
+                <p class="lead">
+
+
+                    by <a href="index.php">Karen McKinney</a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span>@Html.DisplayFor(modelItem => item.Created.LocalDateTime)</p>
+                <hr>
+                // <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                if (!string.IsNullOrWhiteSpace(item.MediaUrl))
+                {
+               <img class="img-responsive" src="@Url.Content(item.MediaUrl)" alt="image">
+                }
+                <hr>
+                <p>@Html.DisplayFor(modelItem => item.Body)</p>
+                <a class="btn btn-primary" href="@Url.Action("Details",new { slug = item.Slug })">@item.Title <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                <hr>
+            }
+
+
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="previous">
+                    <a href="#">&larr; Older</a>
+                </li>
+                <li class="next">
+                    <a href="#">Newer &rarr;</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Blog Search</h4>
+                <form action="@Url.Action("Index", "BlogPosts")">
+                    <div class="input-group">
+                        <input type="text" class="form-control" value="@ViewBag.Query">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Blog Categories Well -->
+            @*<div class="well">
+                    <h4>Blog Categories</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#">Category Name</a>
+                                </li>
+                                <li>
+                                    <a href="#">Category Name</a>
+                                </li>
+                                <li>
+                                    <a href="#">Category Name</a>
+                                </li>
+                                <li>
+                                    <a href="#">Category Name</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#">Category Name</a>
+                                </li>
+                                <li>
+                                    <a href="#">Category Name</a>
+                                </li>
+                                <li>
+                                    <a href="#">Category Name</a>
+                                </li>
+                                <li>
+                                    <a href="#">Category Name</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>*@
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>Side Widget Well</h4>
+                @*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>*@
+            </div>
+
+        </div>
+
+    </div>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

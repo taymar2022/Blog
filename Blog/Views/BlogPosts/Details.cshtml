@@ -1,0 +1,270 @@
+﻿@model Blog.Models.BlogPost
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Blog Post -->
+            <!-- Title -->
+            <h1>@Model.Title</h1>
+
+            <!-- Author -->
+            <p class="lead">
+                by <a href="#">Karen McKinney</a>
+            </p>
+
+            <hr>
+
+            <!-- Date/Time -->
+            <p><span class="glyphicon glyphicon-time"></span> @Model.Created.LocalDateTime</p>
+
+            <hr>
+
+            <!-- Preview Image -->
+            <img class="img-responsive" src="@Model.MediaUrl" alt="">
+
+            <hr>
+
+            <!-- Post Content -->
+            <p class="lead">@*Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?*@</p>
+            <p>@Model.Body</p>
+
+            <hr>
+
+            <!-- Blog Comments -->
+            <!-- Comments Form -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form method="post" action="@Url.Action("CreateComment","BlogPosts")">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="PostId" value="@Model.Id" />
+                    <div class="form-group">
+                        <input name="Body" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <hr>
+
+            <!-- Posted Comments -->
+            <!-- Comment -->
+
+            @foreach (var comment in Model.Comments)
+            {
+                @comment.Author.DisplayName
+                @comment.Created.DateTime.ToLongDateString()
+                @comment.Body
+
+            }
+
+
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="@Model.MediaUrl" alt="">
+                </a>
+                @*<div class="media-body">
+                    <h4 class="media-heading">
+                        Start Bootstrap
+                        <small>August 25, 2014 at 9:30 PM</small>
+                    </h4>*@
+                    @*Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.*@
+                </div>
+            </div>
+
+            <!-- Comment -->
+            @*<div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        Start Bootstrap
+                        <small>August 25, 2014 at 9:30 PM</small>
+                    </h4>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.*@
+                    <!-- Nested Comment -->
+                    @*<div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                Nested Start Bootstrap
+                                <small>August 25, 2014 at 9:30 PM</small>
+                            </h4>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>*@
+                    <!-- End Nested Comment -->
+                </div>
+            </div>
+
+        @*</div>*@
+
+        <!-- Blog Sidebar Widgets Column -->
+        @*<div class="col-md-4">*@
+
+            <!-- Blog Search Well -->
+           @* <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>*@
+
+            <!-- Blog Categories Well -->
+            @*<div class="well">
+                <h4>Blog Categories</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>*@
+                <!-- /.row -->
+            @*</div>*@
+
+            <!-- Side Widget Well -->
+            @*<div class="well">
+                <h4>Side Widget Well</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+            </div>
+
+        </div>
+
+    </div>*@
+    <!-- /.row -->
+
+    @*<hr>*@
+
+    <!-- Footer -->
+    @*<footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright © Your Website 2014</p>
+            </div>
+        </div>*@
+        <!-- /.row -->
+    @*</footer>
+
+</div>*@
+
+
+
+
+
+
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>BlogPost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediaUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Published)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Published)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
